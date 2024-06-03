@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+
+\section*{\textbf{Proof: Approximating $(t_0 + t)^{n-1}$ by an Exponential Function}}
+
+In Hong Qin's network model of aging, the mortality rate $\mu_{net}(t)$ is given by:
+\[
+\mu_{net}(t) \approx cmn(p\lambda)^n \left( \frac{1 - p}{p \lambda} + t \right)^{n-1}
+\]
+where $t_0 = \frac{1 - p}{p \lambda}$.
+
+Simplifying this, we have:
+\[
+\mu_{net}(t) \approx cmn(p\lambda)^n (t_0 + t)^{n-1}
+\]
+
+To understand how this term can be approximated by an exponential function, leading to $\exp(Gt)$ in the $\mu_{net}(t)$ formula, let's follow these steps:
+
+\section*{\textbf{Step-by-Step Approximation}}
+
+1. \textbf{Express $t_0$ and $G$ in Terms of Network Parameters:}
+
+   The virtual age $t_0$ and rate of increase in mortality $G$ are given by:
+   \[
+   t_0 = \frac{1 - p}{p \lambda}
+   \]
+   \[
+   G = \frac{(n - 1) p \lambda}{1 - p}
+   \]
+
+2. \textbf{Simplified Form of $\mu_{net}(t)$:}
+
+   Using the definition of $t_0$, we rewrite $\mu_{net}(t)$ as:
+   \[
+   \mu_{net}(t) \approx cmn(p\lambda)^n \left( \frac{1 - p}{p \lambda} + t \right)^{n-1}
+   \]
+
+   For small $t$ (i.e., $t \ll t_0$), we can approximate this as:
+   \[
+   \mu_{net}(t) \approx cmn(p\lambda)^n \left( \frac{1 - p}{p \lambda} \right)^{n-1}
+   \]
+
+3. \textbf{Approximation by Exponential Function:}
+
+   The term $(t_0 + t)^{n-1}$ can be approximated by an exponential function for large $t$ using the following steps:
+   
+   - Consider the approximation $(t_0 + t) \approx t_0 \cdot \left(1 + \frac{t}{t_0}\right)$.
+   - Using the binomial expansion for large $t$:
+     \[
+     (t_0 + t)^{n-1} \approx t_0^{n-1} \left(1 + \frac{t}{t_0}\right)^{n-1}
+     \]
+   - For large $t$, $\left(1 + \frac{t}{t_0}\right)^{n-1}$ can be approximated using the exponential function:
+     \[
+     \left(1 + \frac{t}{t_0}\right)^{n-1} \approx \exp\left( (n-1) \ln\left(1 + \frac{t}{t_0}\right) \right)
+     \]
+
+   For large $t$:
+   - $\ln\left(1 + \frac{t}{t_0}\right) \approx \frac{t}{t_0}$ because $\ln(1 + x) \approx x$ for small $x$.
+   - Thus:
+     \[
+     \exp\left( (n-1) \ln\left(1 + \frac{t}{t_0}\right) \right) \approx \exp\left( (n-1) \frac{t}{t_0} \right)
+     \]
+
+   So we have:
+   \[
+   (t_0 + t)^{n-1} \approx t_0^{n-1} \exp\left( (n-1) \frac{t}{t_0} \right)
+   \]
+
+4. \textbf{Incorporate into $\mu_{net}(t)$:}
+
+   Substitute this back into the mortality rate expression:
+   \[
+   \mu_{net}(t) \approx cmn(p\lambda)^n t_0^{n-1} \exp\left( (n-1) \frac{t}{t_0} \right)
+   \]
+
+   Recall $t_0 = \frac{1 - p}{p \lambda}$:
+   \[
+   \mu_{net}(t) \approx cmn(p\lambda)^n \left( \frac{1 - p}{p \lambda} \right)^{n-1} \exp\left( (n-1) \frac{t p \lambda}{1 - p} \right)
+   \]
+
+   Simplify the constants:
+   \[
+   \mu_{net}(t) \approx R \exp\left( G t \right)
+   \]
+   where:
+   \[
+   R = cmn(p\lambda)^n \left( \frac{1 - p}{p \lambda} \right)^{n-1}
+   \]
+   and:
+   \[
+   G = \frac{(n-1) p \lambda}{1 - p}
+   \]
+
+This shows how the original term $(t_0 + t)^{n-1}$ can be approximated by an exponential function, leading to the $\exp(Gt)$ term in the $\mu_{net}(t)$ formula.
+
+\end{document}
